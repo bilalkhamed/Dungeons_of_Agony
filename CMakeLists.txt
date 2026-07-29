@@ -9,4 +9,10 @@ add_executable(OOP_Project main.cpp
         Player.cpp
         Player.h
         CharacterTypes.h
-        CharacterTypes.cpp)
+        CharacterTypes.cpp
+        Items/Item.cpp
+        Items/Item.h
+        Items/Potion.cpp
+        Items/Potion.h
+        Items/Armor.cpp
+        Items/Armor.h)
