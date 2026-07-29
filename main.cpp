@@ -1,6 +1,10 @@
 #include <iostream>
+#include "CharacterTypes.h"
+#include "Entity.h"
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+
     return 0;
 }
