@@ -7,7 +7,6 @@ class Shop {
 private:
     // Data members
     Item inventory[7];
-    double price[7];
 
 public:
     // Methods
