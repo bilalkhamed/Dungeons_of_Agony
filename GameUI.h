@@ -2,25 +2,56 @@
 #define GAMEUI_H
 
 #include <iostream>
+#include <string>
 #include "Player.h"
+#include "Entity.h"
 using namespace std;
+
+class Dungeon {
+public:
+    int id;
+    int x;
+    int y;
+    bool isUnlocked;
+    bool isCleared;
+    Entity* Boss;
+};
 
 class GameUI {
 private:
-    void clearScreen() const;
-    char getCleanInput() const;
+    // Data Members
+    Texture2D texture;
+    float timer = 0.0f;
+    string logs[4];
+    int logCount = 0;
 public:
-    int showMainMenu() const;
+    // Constructor & Destructor
+    GameUI();
+    ~GameUI();
 
-    char showDifficultyMenu(int) const;
+    void init(const char* imagePath);
+    void unload();
+    void updateTimer();
+    void addLog(const string& text);
+    void clearLogs();
 
-    char showClassMenu(int) const;
+    static bool IsHovered(Rectangle rect);
+    static bool IsClicked(Rectangle rect);
 
-    char drawGrid(const Player&, int, int, int, const bool doorsCleared[], int, string&) const;
+    // Drawing functions
+    void drawBackground(int width, int height);
+    void drawLoadingScreen(int width);
+    void drawPressStart(int width);
+    void drawMainMenu();
+    void drawHowToPlay();
+    void drawNameEntry(const string& text);
+    void drawDifficultySelection();
+    void drawClassSelection();
 
-    bool CheckInput(const Player&, int, int&, int&, string&, bool&) const;
+    void drawMapScreen(Player* p, const string& name, const string& className, int maxHp, Dungeon map[], int totalDungeons, int selectedInDungeon, bool isInCombat, int EnemyMaxHp);
 
-    void showDungeonEntryScreen() const;
+    void drawShopScreen(Player* p);
+    void drawGameOverScreen();
 };
 
-#endif //GAMEUI_H
+#endif
