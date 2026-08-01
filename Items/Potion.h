@@ -15,8 +15,8 @@ private:
     const static double prices[];
 
 public:
+    Potion() : Item("potion") {};
     Potion(string effect);
-
     double getEffectFactor() const;
     double getPrice() const override;
 };

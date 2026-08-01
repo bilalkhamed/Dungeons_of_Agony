@@ -15,3 +15,7 @@ int Entity::getDamage() const {
 int Entity::getAttackSpeed() const {
     return attackSpeed;
 }
+
+int Entity::getMaxHp() const {
+    return maxHp;
+}
