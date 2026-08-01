@@ -45,7 +45,9 @@ add_executable(OOP_Project main.cpp
                 Items/Armor.cpp
                 Items/Armor.h
                 Dungeon.cpp
-                Dungeon.h)
+                Dungeon.h
+        GameUI.h
+        GameUI.cpp)
 
 # 4. Link raylib and native macOS frameworks to your executable
 target_link_libraries(OOP_Project PRIVATE

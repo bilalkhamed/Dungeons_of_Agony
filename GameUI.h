@@ -5,6 +5,7 @@
 #include <string>
 #include "Player.h"
 #include "Entity.h"
+#include <raylib.h>
 using namespace std;
 
 class Dungeon {
