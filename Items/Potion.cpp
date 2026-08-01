@@ -9,7 +9,6 @@ const int Potion::possibleEffectsCount = size(Potion::possibleEffects);;
 const double Potion::effectFactors[] = {3, 20, 0.7};
 const double Potion::prices[] = {10, 5, 15};
 
-
 Potion::Potion(string effect): Item("potion") {
     bool found = false;
     for (int i = 0; i < possibleEffectsCount; i++) {

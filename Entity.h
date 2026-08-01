@@ -8,12 +8,14 @@ protected:
     int hp;
     int damage;
     int attackSpeed;
+    int maxHp;
 public:
     Entity(int hp, int damage, int attackSpeed);
 
     int getHp() const;
     int getDamage() const;
     int getAttackSpeed() const;
+    int getMaxHp() const;
 };
 
 
