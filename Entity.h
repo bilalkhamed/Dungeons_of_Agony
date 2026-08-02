@@ -17,9 +17,9 @@ public:
     int getAttackSpeed() const;
     int getMaxHp() const;
 
-    int setMaxHp(int maxHp);
-    int setDamage(int damage);
-    int setAttackSpeed(int attackSpeed);
+    void setMaxHp(int maxHp);
+    void setDamage(int damage);
+    void setAttackSpeed(int attackSpeed);
 };
 
 

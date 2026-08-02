@@ -18,7 +18,6 @@ public:
     int y;
     bool isUnlocked;
     bool isCleared;
-
     Dungeon(int level = 1);
     Dungeon(int p_x, int p_y, bool p_unlocked, bool p_cleared, Entity p_boss, int level = 1);
 

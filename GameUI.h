@@ -11,39 +11,37 @@ using namespace std;
 
 class GameUI {
 private:
-    // Data Members
-    Texture2D texture;
+    // Declare all Texture2D members referenced in GameUI.cpp
+    Texture2D menuBgTex;
+    Texture2D dungeonBgTex;
+    Texture2D shopBgTex;
+    Texture2D logoTex;
+    Texture2D doorTex;
+    Texture2D warriorTex;
+    Texture2D mageTex;
+    Texture2D assassinTex;
+
     float timer = 0.0f;
     string logs[4];
     int logCount = 0;
-    static const string MENU_BG_SRC;
-    static const string DUNGEON_BG_SRC;
-    static const string SHOP_BG_SRC;
-    static const string GOLD_IMG_SRC;
-    static const string MAGE_IMG_SRC;
-    static const string ASSASSIN_IMG_SRC;
-    static const string WARRIOR_IMG_SRC;
-    static const string DOOR_IMG_SRC;
-    static const string LOGO_SRC;
 
 public:
-
-
     // Constructor & Destructor
     GameUI();
     ~GameUI();
 
-    void init( );
+    void init();
     void unload();
     void updateTimer();
     void addLog(const string& text);
     void clearLogs();
+    Texture2D loadSafeTexture(const string& filename);
 
     static bool IsHovered(Rectangle rect);
     static bool IsClicked(Rectangle rect);
 
     // Drawing functions
-    void drawBackground(int width, int height);
+    void drawBackground(int width, int height, const string& type);
     void drawLoadingScreen(int width);
     void drawPressStart(int width);
     void drawMainMenu();
@@ -52,7 +50,7 @@ public:
     void drawDifficultySelection();
     void drawClassSelection();
 
-    void drawMapScreen(Player* p, const string& name, const string& className, int maxHp, Dungeon map[], int totalDungeons, int selectedInDungeon, bool isInCombat, int EnemyMaxHp);
+    void drawMapScreen(Player* player, const std::string& name, const std::string& heroClass, int maxHp, Dungeon map[], int totalDungeons, int selectedIndex);
 
     void drawShopScreen(Player* p);
     void drawGameOverScreen();

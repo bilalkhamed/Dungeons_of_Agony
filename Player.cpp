@@ -11,6 +11,10 @@ Player::~Player() {
     delete []storage;
 }
 
+void Player::setGold(double gold) {
+    this->gold = gold;
+}
+
 bool Player::addPotion(Potion p) {
     if (storageCapacity == currentSize) {
         cout << "The storage is full, you cant add items." << endl;

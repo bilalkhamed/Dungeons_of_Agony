@@ -27,7 +27,7 @@ public:
     void increaseCapacity();
     void increaseAttackSpeed();
     void setHp(int hp);
-
+    void setGold(double gold);
     double getGold() const;
     int getArmor() const;
     float getGoldRatio() const;
