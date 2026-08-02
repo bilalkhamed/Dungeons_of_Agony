@@ -1,4 +1,7 @@
+#include "CharacterTypes.h"
 #include "GameUI.h"
+#include "Dungeon.h"
+using namespace std;
 
 enum State { MENU, HOW_TO, NAME_ENTRY, DIFFICULTY, CLASS, MAP, SHOP, GAME_OVER };
 
@@ -26,7 +29,7 @@ int main() {
     auto createMap = [&](int count) {
         totalDungeons = count;
         for (int i = 0; i < count; i++) {
-            map[i] = { i + 1, 400 + (i * 80), 300 + ((i % 2) * 40), i == 0, false, &boss };
+            map[i] = {400 + (i * 80), 300 + ((i % 2) * 40), i == 0, false, boss };
         }
     };
 
@@ -129,5 +132,6 @@ int main() {
 
 exit_game:
     CloseWindow();
+
     return 0;
 }

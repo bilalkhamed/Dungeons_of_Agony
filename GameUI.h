@@ -6,17 +6,8 @@
 #include "Player.h"
 #include "Entity.h"
 #include "raylib.h"
+#include "Dungeon.h"
 using namespace std;
-
-class Dungeon {
-public:
-    int id;
-    int x;
-    int y;
-    bool isUnlocked;
-    bool isCleared;
-    Entity* Boss;
-};
 
 class GameUI {
 private:

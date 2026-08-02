@@ -11,7 +11,7 @@ Player::~Player() {
     delete []storage;
 }
 
-bool Player::addPotion(Potion &p) {
+bool Player::addPotion(Potion p) {
     if (storageCapacity == currentSize) {
         cout << "The storage is full, you cant add items." << endl;
         return false;
@@ -22,10 +22,40 @@ bool Player::addPotion(Potion &p) {
     return true;
 }
 
-void Player::removePotion(int index) {
-    index--;
-    for (int i = index; i<currentSize-1; i++) {
-        storage[i] = storage[i+1];
+int Player::getHealthPotions() const {
+    int count = 0;
+    for (int i =0; i<currentSize; i++) {
+        if (storage[i].getEffectType() == "health") count++;
+    }
+    return count;
+}
+
+int Player::getStrengthPotions() const {
+    int count = 0;
+    for (int i =0; i<currentSize; i++) {
+        if (storage[i].getEffectType() == "strength") count++;
+    }
+    return count;
+}
+
+int Player::getResistancePotions() const {
+    int count = 0;
+    for (int i =0; i<currentSize; i++) {
+        if (storage[i].getEffectType() == "resistance") count++;
+    }
+    return count;
+}
+
+void Player::removePotion(string type) {
+    bool deleted = false;
+    for (int i = 0; i<currentSize; i++) {
+        if (storage[i].getEffectType() == type && !deleted) {
+            deleted = true;
+            if (i != storageCapacity) storage[i] = storage[i+1];
+        }
+        else if (deleted) {
+            storage[i] = storage[i+1];
+        }
     }
     currentSize--;
 }
@@ -44,6 +74,10 @@ void Player::increaseCapacity() {
 
 void Player::increaseAttackSpeed() {
     attackSpeed += 1;
+}
+
+void Player::setHp(int hp) {
+    this->hp = hp;
 }
 
 double Player::getGold() const{

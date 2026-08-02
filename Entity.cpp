@@ -19,3 +19,16 @@ int Entity::getAttackSpeed() const {
 int Entity::getMaxHp() const {
     return maxHp;
 }
+
+int Entity::setMaxHp(int maxHp) {
+    this->maxHp = maxHp;
+    this->hp = maxHp;
+}
+
+int Entity::setDamage(int damage) {
+    this->damage = damage;
+}
+
+int Entity::setAttackSpeed(int attackSpeed) {
+    this->attackSpeed = attackSpeed;
+}

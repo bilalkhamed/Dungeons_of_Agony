@@ -25,7 +25,7 @@ Potion::Potion(string effect): Item("potion") {
     this->effect = effect;
 }
 
-double Potion::getEffectFactor() const {
+double Potion::getEffectFactor(string effect) {
     int index = -1;
     for (int i = 0; i < possibleEffectsCount; i++) {
         if (possibleEffects[i] == effect) {
@@ -45,4 +45,8 @@ double Potion::getPrice() const {
     }
 
     return index == -1 ? 0 : prices[index];
+}
+
+string Potion::getEffectType() const {
+    return effect;
 }

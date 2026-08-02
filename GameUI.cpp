@@ -230,7 +230,7 @@ void GameUI::drawMapScreen(Player *p, const string &name, const string &classNam
         // Draws outline circle for door arch border
         DrawCircleLines(x, y - 40, 30, borderCol);
         DrawCircle(x + 18, y, 4, borderCol); // Door handle knob
-        DrawText(TextFormat("D%d", map[i].id), x - 12, y - 20, 20, RAYWHITE);
+        DrawText(TextFormat("D%d", map[i].getId()), x - 12, y - 20, 20, RAYWHITE);
 
         if (map[i].isCleared) {
             DrawRectangle(x - 32, y + 48, 64, 20, ColorAlpha(BLACK, 0.8f));
@@ -259,7 +259,7 @@ void GameUI::drawMapScreen(Player *p, const string &name, const string &classNam
     DrawRectangleLinesEx({360, 540, 560, 150}, 2, isInCombat ? RED : GOLD);
 
     if (isInCombat) {
-        Entity* boss = map[selectedInDungeon].Boss;
+        Entity* boss = &map[selectedInDungeon].boss;
         DrawText(TextFormat("ENEMY: Dungeon Boss | HP: %d/%d", boss->getHp(), EnemyMaxHp), 380, 555, 18, RED);
         int logY = 588;
         for (int i = 0; i < logCount; i++) {

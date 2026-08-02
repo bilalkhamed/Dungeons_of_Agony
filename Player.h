@@ -17,12 +17,16 @@ public:
     Player(int hp, int damage, int attackSpeed, int armor = 0);
     ~Player();
 
-    bool addPotion(Potion &p);
-    void removePotion(int index);
+    bool addPotion(Potion p);
+    int getHealthPotions() const;
+    int getResistancePotions() const;
+    int getStrengthPotions() const;
+    void removePotion(string type);
     void increaseGold(int amount);
     void decreaseGold(int amount);
     void increaseCapacity();
     void increaseAttackSpeed();
+    void setHp(int hp);
 
     double getGold() const;
     int getArmor() const;

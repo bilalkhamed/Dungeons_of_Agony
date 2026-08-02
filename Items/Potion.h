@@ -17,8 +17,9 @@ private:
 public:
     Potion() : Item("potion") {};
     Potion(string effect);
-    double getEffectFactor() const;
+    static double getEffectFactor(string effect);
     double getPrice() const override;
+    string getEffectType() const;
 };
 
 
