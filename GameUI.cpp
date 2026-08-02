@@ -2,6 +2,9 @@
 #include <raylib.h>
 #include <cmath>
 
+const string GameUI::MENU_BG_SRC = "../images/menu-background.png";
+const string GameUI::DUNGEON_BG_SRC = "../images/dungeon-background.png";
+
 GameUI::GameUI(): texture{0}, timer(0.0f), logCount(0) {}
 
 GameUI::~GameUI() {
@@ -10,13 +13,10 @@ GameUI::~GameUI() {
 
 // FileExists(filepath)
 // returns true if file exists in given path
-void GameUI::init(const char* imagePath) {
-    if (FileExists(imagePath)) {
-        // LoadTexture(filepath)
-        // returns a Texture2D that has the following attributes:
-        // 1. Id, Width, Height, mipmaps
-        // Uploads images into VRAM
-        texture = LoadTexture(imagePath);
+void GameUI::init() {
+    ChangeDirectory(GetApplicationDirectory());
+    if (FileExists(GameUI::MENU_BG_SRC.c_str())) {
+        texture = LoadTexture(MENU_BG_SRC.c_str());
     }
 }
 
@@ -161,6 +161,9 @@ void GameUI::drawDifficultySelection() {
 }
 
 void GameUI::drawClassSelection() {
+    if (FileExists(GameUI::MENU_BG_SRC.c_str())) {
+        texture = LoadTexture(MENU_BG_SRC.c_str());
+    }
     DrawRectangle(80, 50, 1120, 620, ColorAlpha(BLACK, 0.85f));
     DrawText("CHOOSE YOUR HERO CLASS", 360, 100, 40, GOLD);
 
@@ -185,6 +188,9 @@ void GameUI::drawClassSelection() {
 }
 
 void GameUI::drawMapScreen(Player *p, const string &name, const string &className, int maxHp, Dungeon map[], int totalDungeons, int selectedInDungeon, bool isInCombat, int EnemyMaxHp) {
+    if (FileExists(GameUI::DUNGEON_BG_SRC.c_str())) {
+        texture = LoadTexture(DUNGEON_BG_SRC.c_str());
+    }
     // Player Stats HUD Panel
     DrawRectangle(20, 20, 320, 180, ColorAlpha(BLACK, 0.85f));
     DrawRectangleLinesEx({20, 20, 320, 180}, 2, GOLD);

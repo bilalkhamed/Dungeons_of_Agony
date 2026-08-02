@@ -25,12 +25,24 @@ private:
     float timer = 0.0f;
     string logs[4];
     int logCount = 0;
+    static const string MENU_BG_SRC;
+    static const string DUNGEON_BG_SRC;
+    static const string SHOP_BG_SRC;
+    static const string GOLD_IMG_SRC;
+    static const string MAGE_IMG_SRC;
+    static const string ASSASSIN_IMG_SRC;
+    static const string WARRIOR_IMG_SRC;
+    static const string DOOR_IMG_SRC;
+    static const string LOGO_SRC;
+
 public:
+
+
     // Constructor & Destructor
     GameUI();
     ~GameUI();
 
-    void init(const char* imagePath);
+    void init( );
     void unload();
     void updateTimer();
     void addLog(const string& text);
