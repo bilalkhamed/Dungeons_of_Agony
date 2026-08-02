@@ -3,6 +3,8 @@
 //
 
 #include "Armor.h"
+#include <stdexcept>
+using namespace std;
 
 const double Armor::armorBoost[] = {25, 50, 80, 150};
 const string Armor::possibleMaterials[] = {"chain", "iron", "diamond", "dragon scale"};

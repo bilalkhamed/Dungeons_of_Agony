@@ -8,12 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 1. Include the FetchContent module (built into CMake)
 include(FetchContent)
 
-# 2. Tell CMake to pull raylib directly from GitHub
+# 2. Tell CMake to download the raw raylib source files directly (Bypasses Git entirely!)
 FetchContent_Declare(
         raylib
-        GIT_REPOSITORY https://github.com
-        GIT_TAG        5.0.0 # Locks everyone to the exact same version
+        URL      https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz
+        DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
+
 
 # 3. macOS Specific Fix: Force raylib to build as a static library
 # This prevents code-signing or dynamic library path errors on Apple Silicon Macs

@@ -3,6 +3,8 @@
 //
 
 #include "Potion.h"
+#include <stdexcept>
+using namespace std;
 
 const string Potion::possibleEffects[] = {"strength", "health", "resistance"};
 const int Potion::possibleEffectsCount = size(Potion::possibleEffects);;
