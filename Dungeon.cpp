@@ -57,7 +57,6 @@ bool Dungeon::fight(Player &player) {
 
     if (playerWin < bossWin) {
         player.setHp(hpAfterFight);
-        player.increaseGold(20);
         return true;
     }
 
