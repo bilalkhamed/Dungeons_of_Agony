@@ -4,7 +4,8 @@
 
 #include "Item.h"
 #include <iostream>
-
+#include <stdexcept>
+using namespace std;
 
 Item::Item(string type) {
     bool found = false;
