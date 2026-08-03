@@ -164,7 +164,7 @@ void Game::updateMap() {
                     map[selectedDungeon + 1].setUnlocked(true);
                 }
 
-                int goldReward = 20 + (selectedDungeon * 15);
+                int goldReward = 50 + (selectedDungeon * 15);
                 player->increaseGold(goldReward);
                 ui.addLog(TextFormat("VICTORY! Dungeon %d Cleared! (+%d Gold)", curr.getId(), goldReward));
 
