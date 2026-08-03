@@ -20,7 +20,7 @@ Armor::Armor(string material): Item("armor") {
     }
 
     if (!found) {
-        throw runtime_error("invalid potion type");
+        throw runtime_error("invalid Armor type");
         return;
     }
 

@@ -51,15 +51,20 @@ int Player::getResistancePotions() const {
 }
 
 void Player::removePotion(string type) {
-    bool deleted = false;
-    for (int i = 0; i<currentSize; i++) {
-        if (storage[i].getEffectType() == type && !deleted) {
-            deleted = true;
-            if (i != storageCapacity) storage[i] = storage[i+1];
+    int foundIndex = -1;
+    for (int i = 0; i < currentSize; i++) {
+        if (storage[i].getEffectType() == type) {
+            foundIndex = i;
+            break;
         }
-        else if (deleted) {
-            storage[i] = storage[i+1];
-        }
+    }
+
+    if (foundIndex == -1) {
+        return;
+    }
+
+    for (int i = foundIndex; i < currentSize - 1; i++) {
+        storage[i] = storage[i+1];
     }
     currentSize--;
 }
@@ -78,6 +83,10 @@ void Player::increaseCapacity() {
 
 void Player::increaseAttackSpeed() {
     attackSpeed += 1;
+}
+
+void Player::increaseArmor(int amount) {
+    if (amount > 0) armor += amount;
 }
 
 void Player::setHp(int hp) {

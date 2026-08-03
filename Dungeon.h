@@ -11,19 +11,30 @@ protected:
     const int id;
     inline static int idGenerator = 0;
     int level;
-
-public:
     Entity boss;
     int x;
     int y;
-    bool isUnlocked;
-    bool isCleared;
+    bool unlocked;
+    bool cleared;
+public:
     Dungeon(int level = 1);
     Dungeon(int p_x, int p_y, bool p_unlocked, bool p_cleared, Entity p_boss, int level = 1);
 
     int getId() const;
     bool fight(Player &player);
 
+    int getX() const;
+    int getY() const;
+    void setPosition(int x, int y);
+
+    bool isUnlocked() const;
+    void setUnlocked(bool unlocked);
+
+    bool isCleared() const;
+    void setCleared(bool cleared);
+
+    const Entity& getBoss() const;
+    void setBoss(const Entity& newBoss);
 };
 
 

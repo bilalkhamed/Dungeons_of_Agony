@@ -2,7 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Dungeon::Dungeon(int level): level(level), boss(200, 10, 1), id(++idGenerator) {
+Dungeon::Dungeon(int level): level(level),x(0), y(0), unlocked(false), cleared(false), boss(200, 10, 1), id(++idGenerator) {
+
     switch (level) {
         case 1:
             boss.setMaxHp(200);
@@ -22,11 +23,36 @@ Dungeon::Dungeon(int p_x, int p_y, bool p_unlocked, bool p_cleared, Entity p_bos
         id(++idGenerator),
         x(p_x),
         y(p_y),
-        isUnlocked(p_unlocked),
-        isCleared(p_cleared),
+        unlocked(p_unlocked),
+        cleared(p_cleared),
         boss(p_boss),
         level(level){};
 
+int Dungeon::getX() const {return x;}
+int Dungeon::getY() const{return y;}
+
+void Dungeon::setPosition(int x, int y) {
+    this->x = x;
+    this->y = y;
+}
+
+bool Dungeon::isUnlocked() const {return unlocked;}
+
+void Dungeon::setUnlocked(bool unlocked) {
+    this->unlocked = unlocked;
+}
+
+bool Dungeon::isCleared() const{return cleared;}
+
+void Dungeon::setCleared(bool cleared) {
+    this->cleared = cleared;
+}
+
+const Entity& Dungeon::getBoss() const{return boss;}
+
+void Dungeon::setBoss(const Entity& newBoss) {
+    this->boss = newBoss;
+}
 
 bool Dungeon::fight(Player &player) {
     int playerAttackSpeed = player.getAttackSpeed();

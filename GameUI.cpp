@@ -197,44 +197,38 @@ void GameUI::drawClassSelection() {
 }
 
 void GameUI::drawMapScreen(Player* player, const std::string& name, const std::string& heroClass, int maxHp, Dungeon map[], int totalDungeons, int selectedIndex) {
-    // 1. Draw paths connecting dungeons
     for (int i = 0; i < totalDungeons - 1; i++) {
-        Color lineCol = map[i + 1].isUnlocked ? GOLD : GRAY;
-        // Background shadow line
+        Color lineCol = map[i + 1].isUnlocked() ? GOLD : GRAY;
         DrawLineEx(
-            { (float)map[i].x, (float)map[i].y },
-            { (float)map[i + 1].x, (float)map[i + 1].y },
+            { (float)map[i].getX(), (float)map[i].getY() },
+            { (float)map[i + 1].getX(), (float)map[i + 1].getY() },
             6, BLACK
         );
-        // Path line
         DrawLineEx(
-            { (float)map[i].x, (float)map[i].y },
-            { (float)map[i + 1].x, (float)map[i + 1].y },
+            { (float)map[i].getX(), (float)map[i].getY() },
+            { (float)map[i + 1].getX(), (float)map[i + 1].getY() },
             3, lineCol
         );
     }
 
-    // 2. Draw doors and labels
     for (int i = 0; i < totalDungeons; i++) {
-        int posX = map[i].x;
-        int posY = map[i].y;
+        int posX = map[i].getX();
+        int posY = map[i].getY();
         Rectangle doorRect = { (float)(posX - 35), (float)(posY - 45), 70.0f, 90.0f };
 
-        Color doorTint = map[i].isCleared ? ColorAlpha(GREEN, 0.9f) : (map[i].isUnlocked ? WHITE : Color{ 100, 100, 110, 255 });
+        Color doorTint = map[i].isCleared() ? ColorAlpha(GREEN, 0.9f) : (map[i].isUnlocked() ? WHITE : Color{ 100, 100, 110, 255 });
 
         if (doorTex.id > 0) {
             DrawTexturePro(doorTex, { 0, 0, (float)doorTex.width, (float)doorTex.height }, doorRect, { 0, 0 }, 0.0f, doorTint);
         } else {
-            // High-visibility procedural door fallback
-            Color fill = map[i].isCleared ? Color{ 40, 120, 50, 255 } : (map[i].isUnlocked ? Color{ 130, 80, 40, 255 } : Color{ 50, 50, 60, 255 });
-            Color border = map[i].isCleared ? GREEN : (map[i].isUnlocked ? GOLD : GRAY);
+            Color fill = map[i].isCleared() ? Color{ 40, 120, 50, 255 } : (map[i].isUnlocked() ? Color{ 130, 80, 40, 255 } : Color{ 50, 50, 60, 255 });
+            Color border = map[i].isCleared() ? GREEN : (map[i].isUnlocked() ? GOLD : GRAY);
 
             DrawRectangleRec(doorRect, fill);
             DrawRectangleLinesEx(doorRect, 3, border);
-            DrawCircle(posX + 20, posY, 4, map[i].isUnlocked ? GOLD : LIGHTGRAY); // Doorknob
+            DrawCircle(posX + 20, posY, 4, map[i].isUnlocked() ? GOLD : LIGHTGRAY);
         }
 
-        // Highlight box around the currently selected door
         if (i == selectedIndex) {
             DrawRectangleLinesEx({ doorRect.x - 4, doorRect.y - 4, doorRect.width + 8, doorRect.height + 8 }, 3, GOLD);
         }
@@ -242,14 +236,13 @@ void GameUI::drawMapScreen(Player* player, const std::string& name, const std::s
         DrawText(TextFormat("D%d", map[i].getId()), posX - 12, posY + 52, 18, RAYWHITE);
     }
 
-    // 3. Selection pointer arrow (Fixed CCW winding order)
-    int currX = map[selectedIndex].x;
-    int currY = map[selectedIndex].y;
+    int currX = map[selectedIndex].getX();
+    int currY = map[selectedIndex].getY();
 
     DrawTriangle(
-        { (float)currX, (float)(currY - 55) },         // Bottom vertex (pointing down)
-        { (float)(currX + 14), (float)(currY - 78) },   // Top right vertex
-        { (float)(currX - 14), (float)(currY - 78) },   // Top left vertex
+        { (float)currX, (float)(currY - 55) },
+        { (float)(currX + 14), (float)(currY - 78) },
+        { (float)(currX - 14), (float)(currY - 78) },
         GOLD
     );
     DrawTriangleLines(
@@ -259,9 +252,8 @@ void GameUI::drawMapScreen(Player* player, const std::string& name, const std::s
         ORANGE
     );
 
-    // 4. Selected Dungeon Info Box
     const Dungeon& selected = map[selectedIndex];
-    Entity boss = selected.boss;
+    Entity boss = selected.getBoss();
 
     DrawRectangle(440, 520, 400, 100, ColorAlpha(BLACK, 0.85f));
     DrawRectangleLines(440, 520, 400, 100, GOLD);
@@ -270,7 +262,6 @@ void GameUI::drawMapScreen(Player* player, const std::string& name, const std::s
     DrawText(TextFormat("Boss Health: %d", boss.getHp()), 460, 560, 18, RAYWHITE);
     DrawText(TextFormat("Boss Damage: %d", boss.getDamage()), 460, 585, 18, RED);
 
-    // 5. HUD Header
     DrawRectangle(0, 0, 1280, 50, ColorAlpha(BLACK, 0.7f));
     DrawText(TextFormat("%s (%s)", name.c_str(), heroClass.c_str()), 20, 15, 20, GOLD);
     DrawText(TextFormat("HP: %d/%d", player->getHp(), maxHp), 300, 15, 20, GREEN);
@@ -329,6 +320,15 @@ void GameUI::drawGameOverScreen() {
     DrawRectangleLinesEx({ 380, 180, 520, 360 }, 4, RED);
     DrawText("YOU DIED", 510, 230, 50, RED);
     DrawText("Your journey ends here...", 495, 300, 22, GRAY);
+    DrawText("[1] Restart", 550, 372, 28, IsHovered({ 460, 360, 360, 50 }) ? GREEN : WHITE);
+    DrawText("[2] Quit",    570, 452, 28, IsHovered({ 460, 440, 360, 50 }) ? RED   : WHITE);
+}
+
+void GameUI::drawWinScreen() {
+    DrawRectangle(380, 180, 520, 360, ColorAlpha(BLACK, 0.92f));
+    DrawRectangleLinesEx({ 380, 180, 520, 360 }, 4, GOLD);
+    DrawText("VICTORY!", 510, 230, 50, GOLD);
+    DrawText("Every dungeon lies cleared.", 490, 300, 22, GRAY);
     DrawText("[1] Restart", 550, 372, 28, IsHovered({ 460, 360, 360, 50 }) ? GREEN : WHITE);
     DrawText("[2] Quit",    570, 452, 28, IsHovered({ 460, 440, 360, 50 }) ? RED   : WHITE);
 }

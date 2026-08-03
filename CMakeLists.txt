@@ -42,6 +42,8 @@ add_executable(OOP_Project
         Dungeon.h
         GameUI.h
         GameUI.cpp
+        Game.cpp
+        Game.h
 )
 
 # 6. Universally link raylib

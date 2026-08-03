@@ -11,7 +11,6 @@ using namespace std;
 
 class GameUI {
 private:
-    // Declare all Texture2D members referenced in GameUI.cpp
     Texture2D menuBgTex;
     Texture2D dungeonBgTex;
     Texture2D shopBgTex;
@@ -26,7 +25,6 @@ private:
     int logCount = 0;
 
 public:
-    // Constructor & Destructor
     GameUI();
     ~GameUI();
 
@@ -40,7 +38,6 @@ public:
     static bool IsHovered(Rectangle rect);
     static bool IsClicked(Rectangle rect);
 
-    // Drawing functions
     void drawBackground(int width, int height, const string& type);
     void drawLoadingScreen(int width);
     void drawPressStart(int width);
@@ -54,6 +51,7 @@ public:
 
     void drawShopScreen(Player* p);
     void drawGameOverScreen();
+    void drawWinScreen();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-Entity::Entity(int hp, int damage, int attackSpeed) : hp(hp), damage(damage), attackSpeed(attackSpeed){
+Entity::Entity(int hp, int damage, int attackSpeed) : hp(hp), damage(damage), attackSpeed(attackSpeed), maxHp(hp) {
 
 }
 

@@ -15,7 +15,7 @@ protected:
     int currentSize = 0;
 public:
     Player(int hp, int damage, int attackSpeed, int armor = 0);
-    ~Player();
+    ~Player() override;
 
     bool addPotion(Potion p);
     int getHealthPotions() const;
@@ -26,6 +26,7 @@ public:
     void decreaseGold(int amount);
     void increaseCapacity();
     void increaseAttackSpeed();
+    void increaseArmor(int amount);
     void setHp(int hp);
     void setGold(double gold);
     double getGold() const;

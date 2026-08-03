@@ -11,6 +11,7 @@ protected:
     int maxHp;
 public:
     Entity(int hp, int damage, int attackSpeed);
+    virtual ~Entity() = default;
 
     int getHp() const;
     int getDamage() const;
