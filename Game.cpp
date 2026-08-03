@@ -225,6 +225,14 @@ bool Game::tryPurchasePotion(const std::string& type, const std::string& label) 
         ui.addLog("Not enough gold!");
         return false;
     }
+
+    if (type == "health") {
+        int healed = player->refillHealth((int)Potion::getEffectFactor("health"));
+        player->setGold(player->getGold() - p.getPrice());
+        ui.addLog(TextFormat("Bought %s (+%d HP | -%.0f G)", label.c_str(), healed, p.getPrice()));
+        return true;
+    }
+
     if (!player->addPotion(p)) {
         ui.addLog("Inventory is full!");
         return false;

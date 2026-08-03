@@ -88,7 +88,7 @@ bool Dungeon::fight(Player &player) {
 
 
     int usedPotions = 0;
-    while (hpAfterFight <= 0 && usedPotions <= healthPotionsCount) {
+    while (hpAfterFight <= 0 && usedPotions < healthPotionsCount) {
         hpAfterFight += Potion::getEffectFactor("health");
         usedPotions++;
     }

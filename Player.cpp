@@ -89,6 +89,14 @@ void Player::increaseArmor(int amount) {
     if (amount > 0) armor += amount;
 }
 
+int Player::refillHealth(int amount) {
+    if (amount <= 0) return 0;
+    int before = hp;
+    hp += amount;
+    if (hp > maxHp) hp = maxHp;
+    return hp - before;
+}
+
 void Player::setHp(int hp) {
     this->hp = hp;
 }
